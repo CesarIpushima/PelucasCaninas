@@ -1,0 +1,73 @@
+-- Crear usuario, ejecutar linea por linea
+
+ALTER SESSION SET "_ORACLE_SCRIPT"= TRUE;
+CREATE USER admin_peluqueria IDENTIFIED BY "Pelucas23."
+DEFAULT TABLESPACE "USERS"
+TEMPORARY TABLESPACE "TEMP";
+
+ALTER USER admin_peluqueria QUOTA UNLIMITED ON USERS;
+
+GRANT CREATE SESSION TO admin_peluqueria;
+
+GRANT "RESOURCE" TO admin_peluqueria;
+
+SQL> ALTER USER admin_peluqueria DEFAULT ROLE "RESOURCE";
+
+
+-- Secuencia para las claves primarias autoincrementales
+CREATE SEQUENCE usuario_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE corte_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE distrito_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE mascota_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE cita_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE contacto_seq START WITH 1 INCREMENT BY 1;
+
+
+CREATE TABLE Usuario (
+  id_usuario NUMBER DEFAULT usuario_seq.NEXTVAL PRIMARY KEY,
+  usuario VARCHAR2(255) NOT NULL,
+  correo VARCHAR2(255) NOT NULL,
+  num_celular VARCHAR2(15) NOT NULL,
+  contraseña CHAR(8) NOT NULL
+);
+
+CREATE TABLE Cortes (
+  id_corte NUMBER DEFAULT corte_seq.NEXTVAL PRIMARY KEY,
+  corte VARCHAR2(255) NOT NULL,
+  precio NUMBER(10, 2) NOT NULL,
+  descripcion VARCHAR2(255)
+);
+
+CREATE TABLE Distrito (
+  id_distrito NUMBER DEFAULT distrito_seq.NEXTVAL PRIMARY KEY,
+  distrito VARCHAR2(255) NOT NULL,
+  precio NUMBER(10, 2) NOT NULL
+);
+
+CREATE TABLE Mascota (
+  id_mascota NUMBER DEFAULT mascota_seq.NEXTVAL PRIMARY KEY,
+  nombre VARCHAR2(255) NOT NULL,
+  raza VARCHAR2(255),
+  id_usuario NUMBER NOT NULL,
+  FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)
+);
+
+CREATE TABLE Cita (
+  id_cita NUMBER DEFAULT cita_seq.NEXTVAL PRIMARY KEY,
+  fecha_hora TIMESTAMP NOT NULL,
+  calificacion INTEGER,
+  id_mascota NUMBER NOT NULL,
+  id_corte NUMBER NOT NULL,
+  id_distrito NUMBER NOT NULL,
+  FOREIGN KEY (id_mascota) REFERENCES Mascota(id_mascota),
+  FOREIGN KEY (id_corte) REFERENCES Cortes(id_corte),
+  FOREIGN KEY (id_distrito) REFERENCES Distrito(id_distrito)
+);
+
+CREATE TABLE Contactanos (
+  id_contacto NUMBER DEFAULT contacto_seq.NEXTVAL PRIMARY KEY,
+  nombre VARCHAR(255),
+  correo VARCHAR(255),
+  mensaje VARCHAR(1000),
+  fecha_hora TIMESTAMP
+);

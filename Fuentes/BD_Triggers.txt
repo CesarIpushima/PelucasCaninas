@@ -1,0 +1,101 @@
+-- Trigger para INSERT y UPDATE
+CREATE OR REPLACE TRIGGER T01IU_USUARIO
+BEFORE INSERT OR UPDATE ON Usuario
+FOR EACH ROW
+BEGIN
+IF INSERTING THEN
+	:new.UsuCreacion := USER;
+	:new.FecCreacion := SYSDATE;
+	:new.UsuModificacion := USER;
+	:new.FecModificacion := SYSDATE;
+END IF;
+	:new.UsuModificacion := USER;
+	:new.FecModificacion := SYSDATE;
+END;
+/
+
+
+
+CREATE OR REPLACE TRIGGER T02IU_MASCOTA
+BEFORE INSERT OR UPDATE ON Mascota
+FOR EACH ROW
+BEGIN
+IF INSERTING THEN
+	:new.UsuCreacion := USER;
+	:new.FecCreacion := SYSDATE;
+	:new.UsuModificacion := USER;
+	:new.FecModificacion := SYSDATE;
+END IF;
+	:new.UsuModificacion := USER;
+	:new.FecModificacion := SYSDATE;
+END;
+/
+
+
+
+CREATE OR REPLACE TRIGGER T03IU_CORTES
+BEFORE INSERT OR UPDATE ON Cortes
+FOR EACH ROW
+BEGIN
+IF INSERTING THEN
+	:new.UsuCreacion := USER;
+	:new.FecCreacion := SYSDATE;
+	:new.UsuModificacion := USER;
+	:new.FecModificacion := SYSDATE;
+END IF;
+	:new.UsuModificacion := USER;
+	:new.FecModificacion := SYSDATE;
+END;
+/
+
+
+
+CREATE OR REPLACE TRIGGER T04IU_CITA
+BEFORE INSERT OR UPDATE ON Cita
+FOR EACH ROW
+BEGIN
+IF INSERTING THEN
+	:new.UsuCreacion := USER;
+	:new.FecCreacion := SYSDATE;
+	:new.UsuModificacion := USER;
+	:new.FecModificacion := SYSDATE;
+END IF;
+	:new.UsuModificacion := USER;
+	:new.FecModificacion := SYSDATE;
+END;
+/
+
+
+
+CREATE OR REPLACE TRIGGER T05IU_DISTRITO
+BEFORE INSERT OR UPDATE ON Distrito
+FOR EACH ROW
+BEGIN
+IF INSERTING THEN
+	:new.UsuCreacion := USER;
+	:new.FecCreacion := SYSDATE;
+	:new.UsuModificacion := USER;
+	:new.FecModificacion := SYSDATE;
+END IF;
+	:new.UsuModificacion := USER;
+	:new.FecModificacion := SYSDATE;
+END;
+/
+
+
+
+CREATE OR REPLACE TRIGGER T06IU_CONTACTANOS
+BEFORE INSERT OR UPDATE ON Contactanos
+FOR EACH ROW
+BEGIN
+IF INSERTING THEN
+	:new.UsuCreacion := USER;
+	:new.FecCreacion := SYSDATE;
+	:new.UsuModificacion := USER;
+	:new.FecModificacion := SYSDATE;
+END IF;
+	:new.UsuModificacion := USER;
+	:new.FecModificacion := SYSDATE;
+END;
+/
+
