@@ -71,3 +71,39 @@ CREATE TABLE Contactanos (
   mensaje VARCHAR(1000),
   fecha_hora TIMESTAMP
 );
+
+ALTER TABLE Usuario
+ADD (UsuCreacion VARCHAR2(45),
+     FecCreacion TIMESTAMP,
+     UsuModificacion VARCHAR2(45),
+     FecModificacion TIMESTAMP);
+
+ALTER TABLE Cortes
+ADD (UsuCreacion VARCHAR2(45),
+     FecCreacion TIMESTAMP,
+     UsuModificacion VARCHAR2(45),
+     FecModificacion TIMESTAMP);
+
+ALTER TABLE Distrito
+ADD (UsuCreacion VARCHAR2(45),
+     FecCreacion TIMESTAMP,
+     UsuModificacion VARCHAR2(45),
+     FecModificacion TIMESTAMP);
+
+ALTER TABLE Mascota
+ADD (UsuCreacion VARCHAR2(45),
+     FecCreacion TIMESTAMP,
+     UsuModificacion VARCHAR2(45),
+     FecModificacion TIMESTAMP);
+
+ALTER TABLE Cita
+ADD (UsuCreacion VARCHAR2(45),
+     FecCreacion TIMESTAMP,
+     UsuModificacion VARCHAR2(45),
+     FecModificacion TIMESTAMP);
+
+ALTER TABLE Contactanos
+ADD (UsuCreacion VARCHAR2(45),
+     FecCreacion TIMESTAMP,
+     UsuModificacion VARCHAR2(45),
+     FecModificacion TIMESTAMP);
