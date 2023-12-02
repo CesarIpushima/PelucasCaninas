@@ -28,20 +28,32 @@ CREATE TABLE Usuario (
   usuario VARCHAR2(255) NOT NULL,
   correo VARCHAR2(255) NOT NULL,
   num_celular VARCHAR2(15) NOT NULL,
-  contraseña CHAR(8) NOT NULL
+  contraseña CHAR(8) NOT NULL,
+  UsuCreacion VARCHAR2(45),
+  FecCreacion TIMESTAMP,
+  UsuModificacion VARCHAR2(45),
+  FecModificacion TIMESTAMP
 );
 
 CREATE TABLE Cortes (
   id_corte NUMBER DEFAULT corte_seq.NEXTVAL PRIMARY KEY,
   corte VARCHAR2(255) NOT NULL,
   precio NUMBER(10, 2) NOT NULL,
-  descripcion VARCHAR2(255)
+  descripcion VARCHAR2(255),
+  UsuCreacion VARCHAR2(45),
+  FecCreacion TIMESTAMP,
+  UsuModificacion VARCHAR2(45),
+  FecModificacion TIMESTAMP
 );
 
 CREATE TABLE Distrito (
   id_distrito NUMBER DEFAULT distrito_seq.NEXTVAL PRIMARY KEY,
   distrito VARCHAR2(255) NOT NULL,
-  precio NUMBER(10, 2) NOT NULL
+  precio NUMBER(10, 2) NOT NULL,
+  UsuCreacion VARCHAR2(45),
+  FecCreacion TIMESTAMP,
+  UsuModificacion VARCHAR2(45),
+  FecModificacion TIMESTAMP
 );
 
 CREATE TABLE Mascota (
@@ -49,7 +61,11 @@ CREATE TABLE Mascota (
   nombre VARCHAR2(255) NOT NULL,
   raza VARCHAR2(255),
   id_usuario NUMBER NOT NULL,
-  FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)
+  FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario),
+  UsuCreacion VARCHAR2(45),
+  FecCreacion TIMESTAMP,
+  UsuModificacion VARCHAR2(45),
+  FecModificacion TIMESTAMP
 );
 
 CREATE TABLE Cita (
@@ -59,6 +75,10 @@ CREATE TABLE Cita (
   id_mascota NUMBER NOT NULL,
   id_corte NUMBER NOT NULL,
   id_distrito NUMBER NOT NULL,
+  UsuCreacion VARCHAR2(45),
+  FecCreacion TIMESTAMP,
+  UsuModificacion VARCHAR2(45),
+  FecModificacion TIMESTAMP,
   FOREIGN KEY (id_mascota) REFERENCES Mascota(id_mascota),
   FOREIGN KEY (id_corte) REFERENCES Cortes(id_corte),
   FOREIGN KEY (id_distrito) REFERENCES Distrito(id_distrito)
@@ -69,41 +89,10 @@ CREATE TABLE Contactanos (
   nombre VARCHAR(255),
   correo VARCHAR(255),
   mensaje VARCHAR(1000),
-  fecha_hora TIMESTAMP
+  fecha_hora TIMESTAMP,
+  UsuCreacion VARCHAR2(45),
+  FecCreacion TIMESTAMP,
+  UsuModificacion VARCHAR2(45),
+  FecModificacion TIMESTAMP
 );
 
-ALTER TABLE Usuario
-ADD (UsuCreacion VARCHAR2(45),
-     FecCreacion TIMESTAMP,
-     UsuModificacion VARCHAR2(45),
-     FecModificacion TIMESTAMP);
-
-ALTER TABLE Cortes
-ADD (UsuCreacion VARCHAR2(45),
-     FecCreacion TIMESTAMP,
-     UsuModificacion VARCHAR2(45),
-     FecModificacion TIMESTAMP);
-
-ALTER TABLE Distrito
-ADD (UsuCreacion VARCHAR2(45),
-     FecCreacion TIMESTAMP,
-     UsuModificacion VARCHAR2(45),
-     FecModificacion TIMESTAMP);
-
-ALTER TABLE Mascota
-ADD (UsuCreacion VARCHAR2(45),
-     FecCreacion TIMESTAMP,
-     UsuModificacion VARCHAR2(45),
-     FecModificacion TIMESTAMP);
-
-ALTER TABLE Cita
-ADD (UsuCreacion VARCHAR2(45),
-     FecCreacion TIMESTAMP,
-     UsuModificacion VARCHAR2(45),
-     FecModificacion TIMESTAMP);
-
-ALTER TABLE Contactanos
-ADD (UsuCreacion VARCHAR2(45),
-     FecCreacion TIMESTAMP,
-     UsuModificacion VARCHAR2(45),
-     FecModificacion TIMESTAMP);
